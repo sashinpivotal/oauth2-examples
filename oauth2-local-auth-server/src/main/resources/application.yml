@@ -1,0 +1,17 @@
+server:
+  port: 9002
+  context-path: /auth-server
+
+security:
+  oauth2:
+    client:
+      client-id: myclient
+      client-secret: myclientsecret
+      scope: read,write,tell-joke
+      authorized-grant-types: authorization_code,refresh_token,client_credentials,password
+  user: 
+    name: username
+    password: userpassword
+
+        
+       

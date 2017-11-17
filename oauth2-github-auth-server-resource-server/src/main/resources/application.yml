@@ -1,0 +1,9 @@
+server:
+  port: 8001
+  context-path: /resource-server
+
+security:
+  oauth2:
+    resource:
+      userInfoUri: https://api.github.com/user
+ 

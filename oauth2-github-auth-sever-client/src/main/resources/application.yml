@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+security:
+  oauth2:
+    client:
+      clientId: bd1c0a783ccdd1c9b9e4   # Well known client id that works only on http://localhost:8080
+      clientSecret: 1a9030fbca47a5b2c28e92f19050bb77824b5ad1 # Corresponding client secret
+      accessTokenUri: https://github.com/login/oauth/access_token # URI to obtain the Access Tokens
+      userAuthorizationUri: https://github.com/login/oauth/authorize # Authorization URI that users will be redirected to
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: https://api.github.com/user # URI of user endpoint to obtain current user details

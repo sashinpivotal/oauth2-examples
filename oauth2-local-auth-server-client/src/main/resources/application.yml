@@ -1,0 +1,16 @@
+server:
+  port: 9000
+  context-path: /client
+  
+security:
+  oauth2:
+    client:
+      clientId: myclient
+      clientSecret: myclientsecret
+      scope: read,tell-joke
+      access-token-uri: http://localhost:9002/auth-server/oauth/token
+      userAuthorizationUri: http://localhost:9002/auth-server/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:9002/auth-server/user 
+
+      
