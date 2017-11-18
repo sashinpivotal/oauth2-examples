@@ -27,18 +27,15 @@ public class HelloController extends WebSecurityConfigurerAdapter {
 	@Autowired
     private OAuth2RestTemplate oauth2RestTemplate;	
 	
-	@GetMapping("hello")
+	@GetMapping("/")
 	public String sayHello2() {
 		OAuth2AccessToken oAuth2AccessToken = clientContext.getAccessToken();
 		System.out.println("--->Token: " + oAuth2AccessToken.getValue());
 		return "hello";
 	}
 	
-	@GetMapping("resource-in-client")
-	public String getResourceFromResourceServer() {
-		OAuth2AccessToken oAuth2AccessToken = clientContext.getAccessToken();
-		System.out.println("--->Token: " + oAuth2AccessToken.getValue());
-		
+	@GetMapping("/resource-in-client")
+	public String getResourceFromResourceServer() {		
 		String resourceRetrieved = oauth2RestTemplate.getForObject("http://localhost:9001/resource-server/resource-in-server", String.class);
 		return resourceRetrieved;
 	}
