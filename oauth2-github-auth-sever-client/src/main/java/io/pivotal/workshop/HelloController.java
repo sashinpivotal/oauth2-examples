@@ -35,7 +35,7 @@ public class HelloController extends WebSecurityConfigurerAdapter {
     private OAuth2RestTemplate oauth2RestTemplate;	
 	
 	// Try to get token data without accessing remote microservice
-	@GetMapping("hello")
+	@GetMapping("/")
 	public String sayHello2() {
 		OAuth2AccessToken oAuth2AccessToken = clientContext.getAccessToken();
 		System.out.println("--->Token: " + oAuth2AccessToken.getValue());
@@ -43,7 +43,7 @@ public class HelloController extends WebSecurityConfigurerAdapter {
 	}
 	
 	// Access remote microservice
-	@GetMapping("resource-in-client")
+	@GetMapping("/resource-in-client")
 	public String getResourceFromResourceServer() {	
 		String resourceRetrieved 
 		= oauth2RestTemplate.getForObject("http://localhost:8001/resource-server/resource-in-server", String.class);
