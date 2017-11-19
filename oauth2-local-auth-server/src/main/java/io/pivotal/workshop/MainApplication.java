@@ -9,7 +9,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 // two endpoints are automatically added
 //   ./oauth/token (token endpoint)
 //   ./oauth/authorize (authorization endpoint)
-
+//TODO-xx: Verify the presence of the above endpoints using "./auth-server/mappings" 
+//         actuator endpoint  using "username/userpassword" credential
 //TODO-10: Start "oauth-local-auth-server", "oauth-local-auth-server-resource-server",
 //         "oauth-local-auth-server-client" applications
 //TODO-11: Run the following command to get access token from this auth server

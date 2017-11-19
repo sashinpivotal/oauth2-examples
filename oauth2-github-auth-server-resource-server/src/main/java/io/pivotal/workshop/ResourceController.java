@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ResourceController {
 	
-	@GetMapping("resource-in-server")
+	@GetMapping("/resource-in-server")
 	public String sayHello() {
 		return "Message from resource server";
 	}

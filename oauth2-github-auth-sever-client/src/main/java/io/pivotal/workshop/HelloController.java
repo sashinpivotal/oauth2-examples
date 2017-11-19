@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 //          curl -H "Authorization: Bearer <Token>" http://localhost:8001/resource-server/resource-in-server
 //          You should see "Message from resource server" message
 // TODO-03: Access the resource server from the "oauth2-github-auth-server-client" application
-//          http://localhost:8080/resource-in-client either via browser or curl/postman
-//          You should see "Message from resource server" message - this verifies that
+//          accessing the URL of "http://localhost:8080/resource-in-client" either via browser 
+//          or curl/postman.
+//          You should see "Message from resource server" message - this verifies that the
+//          client application accesses the resource server application successfully using
+//          the access token
 // TODO-04: Go to GitHub.com and create your own oauth2 application, which results in its
 //          own "clientId" and "clientSecret". Use these new values in the the "application.yml"
 //          file of the "oauth2-github-auth-server-client" application
@@ -34,7 +37,7 @@ public class HelloController extends WebSecurityConfigurerAdapter {
 	@Autowired
     private OAuth2RestTemplate oauth2RestTemplate;	
 	
-	// Try to get token data without accessing remote microservice
+	// Retrieve access token without accessing remote microservice
 	@GetMapping("/")
 	public String sayHello2() {
 		OAuth2AccessToken oAuth2AccessToken = clientContext.getAccessToken();

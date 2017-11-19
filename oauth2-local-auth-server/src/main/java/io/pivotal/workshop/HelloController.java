@@ -14,7 +14,8 @@ public class HelloController {
 		return "hello";
 	}
 	
-	// This endpoint is used by resource server to verify access token
+	// This endpoint of the auth server is accessed by the resource server 
+	// to verify access token it received from the client is valid
 	@RequestMapping("/user")
 	public Principal user(Principal user) {
 		return user;
