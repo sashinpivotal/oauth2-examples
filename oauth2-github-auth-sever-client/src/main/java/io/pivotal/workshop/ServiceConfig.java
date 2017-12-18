@@ -8,10 +8,11 @@ import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResour
 
 @Configuration
 public class ServiceConfig {
-	
+
 	@Bean
-    public OAuth2RestTemplate oauth2RestTemplate(OAuth2ProtectedResourceDetails resource, OAuth2ClientContext context) {
-        return new OAuth2RestTemplate(resource, context);
-    }
+	public OAuth2RestTemplate oauth2RestTemplate(OAuth2ProtectedResourceDetails resource, 
+			                                     OAuth2ClientContext context) {
+		return new OAuth2RestTemplate(resource, context);
+	}
 
 }

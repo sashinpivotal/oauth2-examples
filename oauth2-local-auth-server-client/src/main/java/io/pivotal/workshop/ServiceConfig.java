@@ -11,7 +11,7 @@ public class ServiceConfig {
 
 	@Bean
 	public OAuth2RestTemplate oauth2RestTemplate(OAuth2ProtectedResourceDetails resourceDetails,
-			OAuth2ClientContext context) {
+			                                     OAuth2ClientContext context) {
 		return new OAuth2RestTemplate(resourceDetails, context);
 	}
 

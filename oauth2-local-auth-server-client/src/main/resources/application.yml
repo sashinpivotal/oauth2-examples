@@ -8,8 +8,8 @@ security:
       clientId: myclient
       clientSecret: myclientsecret
       scope: read,tell-joke
+      user-authorization-uri: http://localhost:9002/auth-server/oauth/authorize
       access-token-uri: http://localhost:9002/auth-server/oauth/token
-      userAuthorizationUri: http://localhost:9002/auth-server/oauth/authorize
     resource:
       user-info-uri: http://localhost:9002/auth-server/user 
 

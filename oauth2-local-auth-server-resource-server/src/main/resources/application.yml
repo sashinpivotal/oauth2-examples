@@ -4,9 +4,6 @@ server:
 
 security:
   oauth2:
-    client:
-      clientId: myclient
-      clientSecret: myclientsecret
     resource:
       user-info-uri: http://localhost:9002/auth-server/user
  

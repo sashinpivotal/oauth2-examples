@@ -16,8 +16,9 @@ public class HelloController {
 	
 	// This endpoint of the auth server is accessed by the resource server 
 	// to verify access token it received from the client is valid
-	@RequestMapping("/user")
+	@RequestMapping({"/user", "/userinfo"})
 	public Principal user(Principal user) {
+        System.out.println("--->Auth server's /usr endpoint is accessed");
 		return user;
 	}
 }
