@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 // TODO-31: Using Chrome Incognito browser, access
 //          http://localhost:8080/displaytoken and observe that the
 //          the auth server prompts the username and password.  Enter
-//          "username" and "userpassword" as credentials. Observe that
-//          the auth server then prompts you to approve "scope.read" and
-//          "scope.tell-joke".  Approve them.
+//          your GitHub username/password as credentials.
 //          Observe that the access token obtained from the GitHub authorization
 //          server gets displayed both in console and on a web page
 

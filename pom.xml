@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.pivotal.workshop</groupId>
+    <artifactId>oauth2-examples-boot1</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>oauth2-examples-boot1</name>
+
+    <modules>
+        <module>oauth2-local-auth-server</module>
+        <module>oauth2-local-auth-server-client</module>
+        <module>oauth2-local-auth-server-resource-server</module>
+        <module>oauth2-github-auth-server-resource-server</module>
+        <module>oauth2-github-auth-sever-client</module>
+    </modules>
+</project>
