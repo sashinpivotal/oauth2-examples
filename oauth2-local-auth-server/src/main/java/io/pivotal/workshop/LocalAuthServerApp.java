@@ -23,10 +23,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @SpringBootApplication
 @EnableAuthorizationServer
 @EnableResourceServer
-public class MainApplication {
+public class LocalAuthServerApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MainApplication.class, args);
+		SpringApplication.run(LocalAuthServerApp.class, args);
 	}
 	
 }

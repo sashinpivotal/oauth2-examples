@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 // TODO-11: Using Chrome Incognito browser, access
 //          http://localhost:9000/client/displaytoken and observe that the
-//          the auth server prompts the username and password.  Enter
+//          the auth server might prompt the username and password.  Enter
 //          "username" and "userpassword" as credentials. Observe that
 //          the auth server then prompts you to approve "scope.read" and
 //          "scope.tell-joke".  Approve them.

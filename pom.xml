@@ -13,6 +13,6 @@
         <module>oauth2-local-auth-server-client</module>
         <module>oauth2-local-auth-server-resource-server</module>
         <module>oauth2-github-auth-server-resource-server</module>
-        <module>oauth2-github-auth-sever-client</module>
+        <module>oauth2-github-auth-server-client</module>
     </modules>
 </project>

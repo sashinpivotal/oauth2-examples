@@ -6,9 +6,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 
 @SpringBootApplication
 @EnableResourceServer
-public class MainApplication {
+public class GitHubResourceServerApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(MainApplication.class, args);
+        SpringApplication.run(GitHubResourceServerApp.class, args);
     }
 }
