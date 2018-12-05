@@ -1,9 +1,12 @@
 server:
   port: 9001
-  context-path: /resource-server
+  servlet:
+    context-path: /resource-server
 
 security:
   oauth2:
+#    client:
+#      clientId: myresource
+#      clientSecret: myresourcesecret
     resource:
       user-info-uri: http://localhost:9002/auth-server/user
- 

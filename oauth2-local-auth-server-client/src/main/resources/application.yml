@@ -1,16 +1,44 @@
 server:
   port: 9000
-  context-path: /client
-  
+  servlet:
+    context-path: /client
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+#spring:
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          provider: local-authz
+#          client-id: myclient
+#          client-secret: myclientsecret
+#          client-authentication-method: basic
+#          authorization-grant-type: authorization_code
+#          scope: profile,read,write,tell-joke
+#          redirect-url-template: "{baseUrl}/login/oauth2/code/{registrationId}"
+#          client-name: My client
+#        provider:
+#          local-authz:
+#            authorization-uri: http://localhost:9002/auth-server/oauth/authorize
+
+
 security:
   oauth2:
     client:
       clientId: myclient
       clientSecret: myclientsecret
-      scope: read,tell-joke
-      user-authorization-uri: http://localhost:9002/auth-server/oauth/authorize
+      grant-type: authorization_code
       access-token-uri: http://localhost:9002/auth-server/oauth/token
+      user-authorization-uri: http://localhost:9002/auth-server/oauth/authorize
+      scope: read,write,tell-joke
     resource:
-      user-info-uri: http://localhost:9002/auth-server/user 
+      user-info-uri: http://localhost:9002/auth-server/user
+
+
+
+
 
       
