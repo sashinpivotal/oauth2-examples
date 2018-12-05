@@ -1,6 +1,7 @@
 server:
   port: 8001
-  context-path: /resource-server
+  servlet:
+    context-path: /resource-server
 
 security:
   oauth2:
