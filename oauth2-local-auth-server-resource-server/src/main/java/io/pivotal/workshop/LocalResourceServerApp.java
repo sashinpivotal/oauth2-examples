@@ -12,12 +12,4 @@ public class LocalResourceServerApp {
 		SpringApplication.run(LocalResourceServerApp.class, args);
 	}
 
-//	@Bean
-//	public ResourceServerTokenServices tokenService() {
-//		RemoteTokenServices tokenServices = new RemoteTokenServices();
-//		tokenServices.setClientId("myresource");
-//		tokenServices.setClientSecret("myresourcesecret");
-//		tokenServices.setCheckTokenEndpointUrl("http://localhost:9002/auth-server/oauth/check_token");
-//		return tokenServices;
-//	}
 }
