@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 // TODO-10: Start "oauth2-local-auth-server-client" and
-//          "oauth2-local-auth-server-resource-server"
+//          "oauth2-local-auth-server-resource-server" and
+//          "oauth2-local-auth-server" (if they are not
+//          started already)
 
 // TODO-11: Using Chrome Incognito browser, access
 //          http://localhost:9000/client/displaytoken and observe that the
