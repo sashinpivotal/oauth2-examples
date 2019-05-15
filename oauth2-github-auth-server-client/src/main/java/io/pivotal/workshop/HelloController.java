@@ -71,7 +71,7 @@ public class HelloController extends WebSecurityConfigurerAdapter {
 	public String getResourceFromResourceServer() {	
 		String resourceRetrieved 
 		= oauth2RestTemplate.getForObject("http://localhost:8001/resource-server/resource-in-server", String.class);
-		return "clint retrieved " + resourceRetrieved;
+		return "client retrieved " + resourceRetrieved;
 	}
 	
 	// Configure security
