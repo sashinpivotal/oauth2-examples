@@ -47,6 +47,8 @@ import org.springframework.web.bind.annotation.RestController;
 //          -Fill in the Application name field with whatever name of your choice
 //          -Fill in "Homepage URL" with http://localhost:8080
 //          -Fill in "Authorization callback URL" with http://localhost:8080/login
+//          -Click "Register application"
+//          -Observe that new "clientId" and "clientSecret" are generated for you
 
 @RestController
 @EnableOAuth2Sso
