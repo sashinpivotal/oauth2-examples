@@ -1,15 +1,5 @@
 package io.pivotal.workshop;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.oauth2.client.OAuth2ClientContext;
-import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 // TODO-30: Start both "oauth2-github-auth-server-client" and
 //          "oauth2-github-auth-server-resource-server" applications
 
@@ -50,40 +40,50 @@ import org.springframework.web.bind.annotation.RestController;
 //          -Click "Register application"
 //          -Observe that new "clientId" and "clientSecret" are generated for you
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import javax.servlet.http.HttpServletRequest;
+
+import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.clientRegistrationId;
+
 @RestController
-@EnableOAuth2Sso
-public class HelloController extends WebSecurityConfigurerAdapter {
-	
+public class HelloController  {
+
 	@Autowired
-	private OAuth2ClientContext clientContext;
-	
+	private OAuth2AuthorizedClientRepository oAuth2AuthorizedClientRepository;
+
 	@Autowired
-    private OAuth2RestTemplate oauth2RestTemplate;	
-	
+	private WebClient webClient;
+
 	// Retrieve access token without accessing remote microservice
 	@GetMapping("/displaytoken")
-	public String displayToken() {
-		OAuth2AccessToken oAuth2AccessToken = clientContext.getAccessToken();
-		System.out.println("--->Token: " + oAuth2AccessToken.getValue());
-		return "Token: " + oAuth2AccessToken.getValue();
+	public String displayToken( HttpServletRequest httpServletRequest) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		OAuth2AuthorizedClient oAuth2AuthorizedClient = oAuth2AuthorizedClientRepository.loadAuthorizedClient("github", authentication, httpServletRequest);
+		String tokenValue = oAuth2AuthorizedClient.getAccessToken().getTokenValue();
+		System.out.println("--->Token: " + tokenValue);
+		return "Token: " + tokenValue;
 	}
-	
-	// Access remote microservice
+
 	@GetMapping("/resource-in-client")
-	public String getResourceFromResourceServer() {	
-		String resourceRetrieved 
-		= oauth2RestTemplate.getForObject("http://localhost:8001/resource-server/resource-in-server", String.class);
+	public String getResourceFromResourceServer() {
+		String resourceRetrieved =
+		webClient.get()
+				 .uri("http://localhost:8001/resource-server/resource-in-server")
+				 .attributes(clientRegistrationId("github"))
+				 .retrieve()
+				 .bodyToMono(String.class)
+				 .block();
 		return "client retrieved " + resourceRetrieved;
-	}
-	
-	// Configure security
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers("/", "/login**")
-			    .permitAll()
-			.anyRequest()
-			    .authenticated();
 	}
 
 }
+
+
