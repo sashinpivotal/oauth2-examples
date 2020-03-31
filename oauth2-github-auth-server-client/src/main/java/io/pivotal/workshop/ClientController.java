@@ -41,6 +41,7 @@ package io.pivotal.workshop;
 //          -Observe that new "clientId" and "clientSecret" are generated for you
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
@@ -48,6 +49,7 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.servlet.http.HttpServletRequest;
@@ -117,6 +119,16 @@ public class ClientController {
 						 .bodyToMono(String.class)
 						 .block();
 		return "client retrieved " + resourceRetrieved;
+	}
+
+	@Autowired
+	private RestTemplate restTemplate;
+
+	@GetMapping("/resource-in-client2")
+	public String getResourceFromResourceServer2() {
+		ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://localhost:8001/resource-server/resource-in-server", String.class);
+
+		return "client retrieved " +responseEntity.getBody();
 	}
 }
 
