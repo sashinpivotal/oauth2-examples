@@ -44,6 +44,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,19 +52,30 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.security.Principal;
+
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.clientRegistrationId;
 
 @RestController
-public class HelloController  {
+public class ClientController {
+
+	@Autowired
+	private OAuth2AuthorizedClientService oAuth2AuthorizedClientService;
+
+	// Retrieve access token without accessing remote microservice
+	@GetMapping("/displaytoken")
+	public String displayToken(Principal principal) {
+		OAuth2AuthorizedClient oAuth2AuthorizedClient = oAuth2AuthorizedClientService.loadAuthorizedClient("github", principal.getName());
+		String tokenValue = oAuth2AuthorizedClient.getAccessToken().getTokenValue();
+		System.out.println("--->Token: " + tokenValue);
+		return "Token: " + tokenValue;
+	}
 
 	@Autowired
 	private OAuth2AuthorizedClientRepository oAuth2AuthorizedClientRepository;
 
-	@Autowired
-	private WebClient webClient;
-
-	// Retrieve access token without accessing remote microservice
-	@GetMapping("/displaytoken")
+	// Another way to get access token
+	@GetMapping("/displaytoken2")
 	public String displayToken( HttpServletRequest httpServletRequest) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		OAuth2AuthorizedClient oAuth2AuthorizedClient = oAuth2AuthorizedClientRepository.loadAuthorizedClient("github", authentication, httpServletRequest);
@@ -71,6 +83,9 @@ public class HelloController  {
 		System.out.println("--->Token: " + tokenValue);
 		return "Token: " + tokenValue;
 	}
+
+	@Autowired
+	private WebClient webClient;
 
 	@GetMapping("/resource-in-client")
 	public String getResourceFromResourceServer() {
