@@ -7,24 +7,6 @@ logging:
   level:
     org.springframework.security: DEBUG
 
-#spring:
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          provider: local-authz
-#          client-id: myclient
-#          client-secret: myclientsecret
-#          client-authentication-method: basic
-#          authorization-grant-type: authorization_code
-#          scope: profile,read,write,tell-joke
-#          redirect-url-template: "{baseUrl}/login/oauth2/code/{registrationId}"
-#          client-name: My client
-#        provider:
-#          local-authz:
-#            authorization-uri: http://localhost:9002/auth-server/oauth/authorize
-
-
 security:
   oauth2:
     client:

@@ -33,7 +33,7 @@ package io.pivotal.workshop;
 //          -In upper right corner, click your profile picture
 //          -Select "Settings" in the drop down menu
 //          -Select "Developer settings" on the left
-//          -Click "New OAuth app" button
+//          -Click "OAuth app"->"New OAuth app" buttons
 //          -Fill in the Application name field with whatever name of your choice
 //          -Fill in "Homepage URL" with http://localhost:8080
 //          -Fill in "Authorization callback URL" with http://localhost:8080/login
